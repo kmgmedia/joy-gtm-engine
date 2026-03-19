@@ -140,7 +140,7 @@ export default function Demo() {
           <div style={{ marginTop: 16, width: "100%" }}>
             <div style={{ background: "#e3f2fd", borderRadius: 8, padding: 16, marginBottom: 12 }}>
               <strong style={{ color: '#1976D2', fontSize: 18 }}>HealthCare Insight</strong>
-              <div style={{ marginTop: 8 }}>{insight}</div>
+              <div style={{ marginTop: 8, color: '#333', lineHeight: 1.6 }}>{insight}</div>
             </div>
           </div>
         )}
@@ -148,7 +148,7 @@ export default function Demo() {
           <div style={{ marginTop: 8, width: "100%" }}>
             <div style={{ background: "#ffdbe0", borderRadius: 8, padding: 16, marginBottom: 12 }}>
               <strong style={{ color: '#e53935', fontSize: 18 }}>Generated Message</strong>
-              <div style={{ marginTop: 8 }}>{result}</div>
+              <div style={{ marginTop: 8, color: '#333', lineHeight: 1.6 }}>{result}</div>
               <button style={{ background: '#e53935', color: 'white', border: 'none', borderRadius: 6, padding: '6px 16px', marginTop: 8, fontWeight: 'bold', cursor: 'pointer' }}>Copy Message</button>
             </div>
           </div>
@@ -168,13 +168,13 @@ export default function Demo() {
                     border: '2px solid #ff9800',
                   }}
                 >
-                    <div>
-                      <strong>Name:</strong> {lead.name}
-                      <strong>Company:</strong> {lead.company}
-                      <strong>Industry:</strong> {lead.industry || "HealthCare"}
-                      <strong>Message:</strong> {lead.message}
-                      <strong>Insight:</strong> {lead.insight}
-                      <strong>Status:</strong>
+                    <div style={{ color: '#333' }}>
+                      <div style={{ marginBottom: 8 }}><strong>Name:</strong> {lead.name}</div>
+                      <div style={{ marginBottom: 8 }}><strong>Company:</strong> {lead.company}</div>
+                      <div style={{ marginBottom: 8 }}><strong>Industry:</strong> {lead.industry || "HealthCare"}</div>
+                      <div style={{ marginBottom: 8 }}><strong>Message:</strong> {lead.message}</div>
+                      <div style={{ marginBottom: 8 }}><strong>Insight:</strong> {lead.insight}</div>
+                      <div><strong>Status:</strong>
                       <select
                         value={lead.status}
                         onChange={(e) => handleStatusChange(i, e.target.value)}
@@ -184,6 +184,7 @@ export default function Demo() {
                         <option value="Contacted">Contacted</option>
                         <option value="Converted">Converted</option>
                       </select>
+                      </div>
                     </div>
                 </li>
               ))}
