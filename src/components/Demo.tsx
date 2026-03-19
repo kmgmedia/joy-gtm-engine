@@ -50,8 +50,8 @@ export default function Demo() {
   const handleStatusChange = (i: number, newStatus: string) => {
     setLeads((prev) =>
       prev.map((lead, idx) =>
-        idx === i ? { ...lead, status: newStatus } : lead
-      )
+        idx === i ? { ...lead, status: newStatus } : lead,
+      ),
     );
   };
 
@@ -103,7 +103,13 @@ export default function Demo() {
             placeholder="Name"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            style={{ marginBottom: 8, width: "100%", padding: 8, border: "2px solid #e53935", borderRadius: 6 }}
+            style={{
+              marginBottom: 8,
+              width: "100%",
+              padding: 8,
+              border: "2px solid #e53935",
+              borderRadius: 6,
+            }}
             required
           />
           <input
@@ -111,7 +117,13 @@ export default function Demo() {
             placeholder="Company"
             value={form.company}
             onChange={(e) => setForm({ ...form, company: e.target.value })}
-            style={{ marginBottom: 8, width: "100%", padding: 8, border: "2px solid #e53935", borderRadius: 6 }}
+            style={{
+              marginBottom: 8,
+              width: "100%",
+              padding: 8,
+              border: "2px solid #e53935",
+              borderRadius: 6,
+            }}
             required
           />
           <input
@@ -119,7 +131,13 @@ export default function Demo() {
             placeholder="Industry (optional)"
             value={form.industry}
             onChange={(e) => setForm({ ...form, industry: e.target.value })}
-            style={{ marginBottom: 8, width: "100%", padding: 8, border: "2px solid #e53935", borderRadius: 6 }}
+            style={{
+              marginBottom: 8,
+              width: "100%",
+              padding: 8,
+              border: "2px solid #e53935",
+              borderRadius: 6,
+            }}
           />
           <button
             type="submit"
@@ -138,24 +156,61 @@ export default function Demo() {
         </form>
         {insight && (
           <div style={{ marginTop: 16, width: "100%" }}>
-            <div style={{ background: "#e3f2fd", borderRadius: 8, padding: 16, marginBottom: 12 }}>
-              <strong style={{ color: '#1976D2', fontSize: 18 }}>HealthCare Insight</strong>
-              <div style={{ marginTop: 8, color: '#333', lineHeight: 1.6 }}>{insight}</div>
+            <div
+              style={{
+                background: "#e3f2fd",
+                borderRadius: 8,
+                padding: 16,
+                marginBottom: 12,
+              }}
+            >
+              <strong style={{ color: "#1976D2", fontSize: 18 }}>
+                HealthCare Insight
+              </strong>
+              <div style={{ marginTop: 8, color: "#333", lineHeight: 1.6 }}>
+                {insight}
+              </div>
             </div>
           </div>
         )}
         {result && (
           <div style={{ marginTop: 8, width: "100%" }}>
-            <div style={{ background: "#ffdbe0", borderRadius: 8, padding: 16, marginBottom: 12 }}>
-              <strong style={{ color: '#e53935', fontSize: 18 }}>Generated Message</strong>
-              <div style={{ marginTop: 8, color: '#333', lineHeight: 1.6 }}>{result}</div>
-              <button style={{ background: '#e53935', color: 'white', border: 'none', borderRadius: 6, padding: '6px 16px', marginTop: 8, fontWeight: 'bold', cursor: 'pointer' }}>Copy Message</button>
+            <div
+              style={{
+                background: "#ffdbe0",
+                borderRadius: 8,
+                padding: 16,
+                marginBottom: 12,
+              }}
+            >
+              <strong style={{ color: "#e53935", fontSize: 18 }}>
+                Generated Message
+              </strong>
+              <div style={{ marginTop: 8, color: "#333", lineHeight: 1.6 }}>
+                {result}
+              </div>
+              <button
+                style={{
+                  background: "#e53935",
+                  color: "white",
+                  border: "none",
+                  borderRadius: 6,
+                  padding: "6px 16px",
+                  marginTop: 8,
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                }}
+              >
+                Copy Message
+              </button>
             </div>
           </div>
         )}
         {leads.length > 0 && (
           <div style={{ marginTop: 32, width: "100%" }}>
-            <h3 style={{ color: '#ff9800', fontWeight: 'bold', fontSize: 22 }}>Pipeline:</h3>
+            <h3 style={{ color: "#ff9800", fontWeight: "bold", fontSize: 22 }}>
+              Pipeline:
+            </h3>
             <ul style={{ listStyle: "none", padding: 0 }}>
               {leads.map((lead, i) => (
                 <li
@@ -165,16 +220,27 @@ export default function Demo() {
                     background: "#fff8e1",
                     padding: 16,
                     borderRadius: 8,
-                    border: '2px solid #ff9800',
+                    border: "2px solid #ff9800",
                   }}
                 >
-                    <div style={{ color: '#333' }}>
-                      <div style={{ marginBottom: 8 }}><strong>Name:</strong> {lead.name}</div>
-                      <div style={{ marginBottom: 8 }}><strong>Company:</strong> {lead.company}</div>
-                      <div style={{ marginBottom: 8 }}><strong>Industry:</strong> {lead.industry || "HealthCare"}</div>
-                      <div style={{ marginBottom: 8 }}><strong>Message:</strong> {lead.message}</div>
-                      <div style={{ marginBottom: 8 }}><strong>Insight:</strong> {lead.insight}</div>
-                      <div><strong>Status:</strong>
+                  <div style={{ color: "#333" }}>
+                    <div style={{ marginBottom: 8 }}>
+                      <strong>Name:</strong> {lead.name}
+                    </div>
+                    <div style={{ marginBottom: 8 }}>
+                      <strong>Company:</strong> {lead.company}
+                    </div>
+                    <div style={{ marginBottom: 8 }}>
+                      <strong>Industry:</strong> {lead.industry || "HealthCare"}
+                    </div>
+                    <div style={{ marginBottom: 8 }}>
+                      <strong>Message:</strong> {lead.message}
+                    </div>
+                    <div style={{ marginBottom: 8 }}>
+                      <strong>Insight:</strong> {lead.insight}
+                    </div>
+                    <div>
+                      <strong>Status:</strong>
                       <select
                         value={lead.status}
                         onChange={(e) => handleStatusChange(i, e.target.value)}
@@ -184,8 +250,8 @@ export default function Demo() {
                         <option value="Contacted">Contacted</option>
                         <option value="Converted">Converted</option>
                       </select>
-                      </div>
                     </div>
+                  </div>
                 </li>
               ))}
             </ul>
