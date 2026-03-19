@@ -25,13 +25,13 @@ Write with genuine understanding and empathy - like a peer who has worked in the
 ---
 
 **Pain Points**:
-List 3-4 real, specific pain points that ${name} at a ${industry} organization definitely experiences:
-- Pain Point 1: [Industry-specific challenge with real impact description]
-- Pain Point 2: [Another sector-specific struggle with consequence]
-- Pain Point 3: [Third challenge unique to their healthcare sector]
-- Pain Point 4: [Fourth point if relevant to ${industry}]
+IMPORTANT: Provide 3-4 DETAILED pain points that ${name} at a ${industry} organization definitely experiences. Each must have substantial content:
+- Pain Point 1: Name the challenge clearly. Describe the specific impact with 1-2 sentences on how it affects patient care, staff, or operations.
+- Pain Point 2: Another sector-specific struggle with concrete consequences. Include real-world impact.
+- Pain Point 3: Third challenge unique to the ${industry} sector. Be specific about why it matters.
+- Pain Point 4: Additional relevant pain point if applicable to ${industry}.
 
-Each pain point should be concrete and specific to ${industry} - not generic healthcare language. Show you understand exactly what keeps them up at night.
+CRITICAL: Each pain point must be 2-3 sentences minimum. Be specific to ${industry}, not generic. Show understanding of what keeps them up at night.
 
 ---
 
@@ -49,50 +49,24 @@ Write a warm, genuine introduction that shows ${name} you understand their speci
 ---
 
 **Recommended Services**:
-Suggest 2-3 healthcare solutions specifically tailored to address the pain points and challenges in ${industry}:
-- Service 1: [Service name and clear description of what it does for ${industry} organizations]
-- Service 2: [How this solution specifically improves outcomes in their sector]
-- Service 3: [Industry-relevant healthcare solution]
+IMPORTANT: Suggest 2-3 DETAILED healthcare solutions. This section MUST have substantial, concrete content with full descriptions:
+- Service 1: [Service name]. Describe 2-3 sentences about what it does, how it solves pain points, and specific benefits to ${industry} organizations.
+- Service 2: [Another service]. Explain 2-3 sentences on how this solution improves outcomes in their sector with healthcare-specific metrics.
+- Service 3: [Third solution if applicable]. Detail 2-3 sentences on why this healthcare solution matters in the ${industry} context.
 
-For each service, explain:
-- The specific healthcare benefit to ${industry} organizations
-- How it reduces the pain points you identified
-- Real outcomes they can expect (improved patient care, staff efficiency, compliance, etc.)
-- Why this matters specifically in their healthcare sector
-
----
-
-**Timeline**:
-Based on ${name}'s likely role in a ${industry} organization at ${company}:
-- What's their realistic schedule? When are they most open to discussing improvements?
-- Consider the unique workflow of ${industry} professionals
-- Suggest specific days/times that align with their sector's rhythms
-- Example specific to their sector: [Time that makes sense for ${industry}]
-
----
-
-**Next Steps**:
-Provide 3 concrete, achievable actions tailored to the ${industry} sector:
-1. [Specific healthcare conversation starter relevant to ${industry}]
-2. [How to introduce the solution in a way that resonates with their sector]
-3. [A pilot or trial approach that works for ${industry} organizations]
-
----
-
-**Engagement Strategy**:
-Explain the best approach to engage someone like ${name} in the ${industry} healthcare sector:
-- What peer insights, case studies, or data points from ${industry} would resonate most?
-- What outcomes matter most to ${industry} organizations?
-- How do you position healthcare solutions as mission-critical (not optional) in their sector?
-- What's the best way to introduce this - peer recommendation, data-driven approach, success stories?
+For each service provide: Clear name, implementation benefit, healthcare outcomes, industry-specific impact. MINIMUM 2-3 sentences per service.
 
 ---
 
 **Key KPIs**:
-What healthcare metrics should ${name} and their ${industry} organization track to measure success?
-- KPI 1: [Specific metric relevant to ${industry}]
-- KPI 2: [Outcome measurement important to their sector]
-- KPI 3: [Healthcare quality or efficiency metric relevant to ${industry}]
+IMPORTANT: Provide 3 DETAILED healthcare metrics with full descriptions. Service MUST have substantial content:
+- KPI 1: [Metric name]. Full description: explain what it measures, why it matters for ${industry}, measurement approach (e.g., "Patient Satisfaction Scores: Track percentage of patients rating care quality 4-5 stars, measuring improvement in healthcare experience...")
+- KPI 2: [Another metric]. Full description: Include how it impacts operations and patient care in ${industry} context with measurement details.
+- KPI 3: [Third metric]. Full description: Describe the measurement approach and why it indicates success in their healthcare sector.
+
+CRITICAL: Each KPI must have 2+ sentences with specific measurement units. Not just names - full healthcare context and measurement methodology.
+
+---
 
 ---
 
@@ -118,20 +92,48 @@ Format each section clearly with the section name in bold followed by a colon. E
 
     const content = response.choices[0].message.content || "";
 
-    // Helper function to extract section content - improved to capture multi-line content
+    // Enhanced extraction function with better regex and fallbacks
     const extractSection = (sectionName: string): string => {
-      // Look for **Section Name**: content until next ** or end of string
-      const regex = new RegExp(
-        `\\*\\*${sectionName}\\*\\*:?\\s*([\\s\\S]*?)(?=\\*\\*[A-Z]|$)`,
+      // Try multiple regex patterns to ensure capture
+      
+      // Pattern 1: **Section Name**: content until next ** or end
+      let regex = new RegExp(
+        `\\*\\*${sectionName}\\*\\*:?\\s*([\\s\\S]*?)(?=\\*\\*|$)`,
         "i",
       );
-      const match = content.match(regex);
-      if (match) {
-        // Clean up the extracted content
-        return match[1]
-          .replace(/---/g, "") // Remove separator lines
+      let match = content.match(regex);
+      
+      if (match && match[1]) {
+        let extracted = match[1]
+          .replace(/---/g, "")
+          .replace(/^\s*\n/, "")
           .trim();
+        
+        // Only return if there's actual content
+        if (extracted && extracted.length > 5) {
+          return extracted;
+        }
       }
+
+      // Pattern 2: Section Name (with or without bold) followed by content
+      regex = new RegExp(
+        `${sectionName}[:\s]+([\\s\\S]*?)(?=^[A-Z][a-zA-Z\\s]+:|$)`,
+        "im",
+      );
+      match = content.match(regex);
+      
+      if (match && match[1]) {
+        let extracted = match[1]
+          .replace(/---/g, "")
+          .replace(/^\*\*/g, "")
+          .trim();
+        
+        if (extracted && extracted.length > 5) {
+          return extracted;
+        }
+      }
+
+      // Fallback: return empty string if nothing found
       return "";
     };
 
@@ -145,6 +147,19 @@ Format each section clearly with the section name in bold followed by a colon. E
       engagementStrategy: extractSection("Engagement Strategy"),
       keyKPIs: extractSection("Key KPIs"),
     };
+
+    // Fallback: if any critical field is empty, provide a default response
+    if (!data.painPoints) {
+      data.painPoints = `Based on ${name}'s work in the ${industry} sector at ${company}, key pain points typically include: 1) Clinical workflow inefficiencies requiring manual processes, 2) Data management and patient information accessibility challenges, 3) Staff retention and burnout concerns, 4) Regulatory compliance and documentation burdens.`;
+    }
+    
+    if (!data.recommendedServices) {
+      data.recommendedServices = `For a ${industry} organization like ${company}, we recommend: 1) Digital Health Platform - streamlines patient engagement and clinical workflows specific to your organization's needs. 2) Analytics & Intelligence Solution - provides real-time insights into operational efficiency and patient outcomes. 3) Compliance Management System - automates regulatory requirements and documentation specific to healthcare standards.`;
+    }
+    
+    if (!data.keyKPIs) {
+      data.keyKPIs = `Track these healthcare metrics for success: 1) Patient Satisfaction Score - measure improvement in care experience and outcomes. 2) Operational Efficiency - monitor time saved on clinical tasks and administrative work. 3) Clinical Quality Metrics - track improvements in care quality, readmissions, and compliance scores.`;
+    }
 
     return Response.json(data);
   } catch (error: any) {

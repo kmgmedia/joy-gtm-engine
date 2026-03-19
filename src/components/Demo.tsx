@@ -477,7 +477,9 @@ export default function Demo() {
                       }}
                     >
                       <div style={{ marginBottom: 0 }}>
-                        <strong style={{ fontSize: isMobile ? "13px" : "14px" }}>
+                        <strong
+                          style={{ fontSize: isMobile ? "13px" : "14px" }}
+                        >
                           Name:
                         </strong>
                         <span style={{ fontSize: isMobile ? "13px" : "14px" }}>
@@ -486,7 +488,9 @@ export default function Demo() {
                         </span>
                       </div>
                       <div style={{ marginBottom: 0 }}>
-                        <strong style={{ fontSize: isMobile ? "13px" : "14px" }}>
+                        <strong
+                          style={{ fontSize: isMobile ? "13px" : "14px" }}
+                        >
                           Company:
                         </strong>
                         <span style={{ fontSize: isMobile ? "13px" : "14px" }}>
@@ -495,7 +499,9 @@ export default function Demo() {
                         </span>
                       </div>
                       <div style={{ marginBottom: 0 }}>
-                        <strong style={{ fontSize: isMobile ? "13px" : "14px" }}>
+                        <strong
+                          style={{ fontSize: isMobile ? "13px" : "14px" }}
+                        >
                           Industry:
                         </strong>
                         <span style={{ fontSize: isMobile ? "13px" : "14px" }}>
@@ -504,7 +510,9 @@ export default function Demo() {
                         </span>
                       </div>
                       <div>
-                        <strong style={{ fontSize: isMobile ? "13px" : "14px" }}>
+                        <strong
+                          style={{ fontSize: isMobile ? "13px" : "14px" }}
+                        >
                           Status:
                         </strong>
                         <select
