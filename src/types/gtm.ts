@@ -5,6 +5,7 @@ export type Lead = {
   insight: string;
   painPoints: string;
   message: string;
+  suggestedNextAction: string;
   recommendedServices: string;
   timeline: string;
   nextSteps: string;

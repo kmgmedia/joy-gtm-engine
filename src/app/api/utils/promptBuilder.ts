@@ -30,6 +30,16 @@ Generate a pitch that:
 3. Proposes a specific healthcare solution (telehealth platform, wellness program, mental health support, preventive screening, health coaching, benefits optimization, compliance tools)
 4. Connects healthcare to better outcomes for their clients/team (healthier team = better service, lower turnover = lower costs, preventive care = fewer crises, wellness = productivity, compliance = reputation protection)
 
+SHARP INSIGHT EXAMPLES (Model This Tone):
+✓ "Growth is bottlenecked by manual outreach and relationship management, which means every new prospect requires heavy lift from ${name}'s team."
+✓ "${name}'s healthcare model relies heavily on compliance overhead that doesn't scale - every new client adds administrative burden."
+✓ "Team productivity is hamstrung by burnout-driven turnover in ${industryValue}, which means constant rehiring costs and knowledge gaps."
+✓ "Healthcare access gaps create two problems for ${name}: higher clinic no-shows AND patient outcomes that damage reputation."
+✓ "Mental health challenges in ${industryValue} are quietly killing retention - ${name} loses trained staff faster than industry average."
+✓ "Preventive care doesn't exist in their current model - everything is reactive crisis management, which is expensive AND ineffective."
+✓ "${name}'s biggest constraint is that healthcare decisions require manual reviews, slowing response time for urgent health needs."
+✓ "Compliance regulations shift every quarter in ${industryValue}, forcing ${name} to constantly retrain staff or risk penalties."
+
 EXAMPLES OF HEALTHCARE-FOCUSED (DO THIS):
 ✓ "As a school owner, managing diverse health needs for students and staff is critical..."
 ✓ "Healthcare access for your team affects both wellbeing AND productivity..."
@@ -56,12 +66,13 @@ WRONG APPROACH (AVOID):
 
 ---
 
-Return valid JSON with exactly 4 fields:
+Return valid JSON with exactly 5 fields:
 
 {
-  "insight": "<3 sentences. START with healthcare reality for their role/organization. Explain healthcare impact. Propose healthcare benefit.>",
+  "insight": "<2-3 sentences. Be SHARP and SPECIFIC about the real business constraint. Not generic. Examples: 'Growth is bottlenecked by manual outreach and relationship management', 'Their healthcare model relies on compliance overhead that doesn't scale', 'Team productivity is hamstrung by burnout-driven turnover in high-pressure roles'. Identify the REAL PROBLEM, not just surface-level observation.>",
   "painPoints": ["<healthcare access or health quality gap for ${name}'s organization>", "<health-related outcome affecting their clients/students/team>", "<healthcare cost or coverage issue>"],
   "message": "<50-70 words. START with ONE of these approaches: (1) 'As a ${industryValue} professional like you...', (2) '${name}, managing healthcare for [your team/clients/students] is...', (3) 'The healthcare reality in ${industryValue} is...', (4) 'I understand that ${industryValue} professionals face...', (5) 'Healthcare is a critical factor in ${industryValue}...', (6) 'Many ${industryValue} organizations struggle with...', (7) '${name}, here's the truth about healthcare in ${industryValue}...', (8) 'What if you could solve [health challenge] in ${industryValue}?', (9) 'The biggest healthcare gap in ${industryValue} is...', (10) 'Most ${industryValue} teams don't realize that...', (11) 'Healthcare costs are impacting ${industryValue} more than ever...', (12) 'Your team deserves healthcare solutions built for ${industryValue}...'. MIDDLE: Show ONE healthcare solution benefit approach: 'This reduces healthcare costs by...', 'Our solution improves employee satisfaction and...', 'Preventive healthcare cuts absenteeism and...', 'This directly boosts productivity through...', 'Your clients/students benefit from...', 'It ensures compliance while also...', 'This creates competitive advantage by...', 'Healthier employees mean less turnover and...', 'Team morale improves when...', 'Time savings happen because...', 'Your bottom line improves when healthcare...', 'Staff engagement rises when you invest in...' END with ONE of these: 'Let's schedule a meeting', 'Can we demo this for you?', 'I'd love to discuss this consultation', 'Let me share how this works', 'Ready to get started?', 'Let's explore options together', 'When can we connect?', 'I'd like to walk you through this', 'Should we set up a quick call?', 'Let me show you what's possible', 'Interested in learning more?', 'Let's find the right solution for you'.>",
+  "suggestedNextAction": "<ONE specific GTM action after this message. Choose from: 'Send personalized LinkedIn message with healthcare benchmark data for ${industryValue}', 'Wait 2 days, then follow up with case study from similar ${industryValue} company', 'Research ${name}'s recent company updates/news and reference in follow-up', 'Schedule 15-min call to discuss healthcare roadmap', 'Send healthcare ROI calculator specific to ${industryValue}', 'Connect with ${company}'s benefits/HR contact first', 'Share industry report on healthcare costs in ${industryValue}', 'Ask about their current healthcare provider's pain points', 'Reference specific compliance requirements in ${industryValue}', 'Send competitor healthcare solution comparison for ${industryValue}'.>",
   "nextSteps": "<ONE action: Schedule healthcare consultation, Review health plan options, Demo telehealth platform, Get wellness assessment, etc.>"
 }
 

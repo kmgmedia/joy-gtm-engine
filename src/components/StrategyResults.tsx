@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import type { GTMStrategy } from "@/types/gtm";
 import { CARD_COLORS } from "@/constants/cardColors";
 import { StrategyCard } from "./Cards/StrategyCard";
@@ -17,6 +17,8 @@ export const StrategyResults: React.FC<StrategyResultsProps> = ({
   gap,
   gridColumns,
 }) => {
+  const [isContacted, setIsContacted] = useState(false);
+
   if (!result) return null;
 
   const handleCopyMessage = () => {
@@ -26,10 +28,33 @@ export const StrategyResults: React.FC<StrategyResultsProps> = ({
     }
   };
 
+  const handleMarkContacted = () => {
+    setIsContacted(!isContacted);
+  };
+
   const cardFontSize = isMobile ? "14px" : "16px";
 
   return (
     <div style={{ marginTop: 24, width: "100%" }}>
+      <div style={{ marginBottom: "12px", display: "flex", gap: "8px" }}>
+        <button
+          onClick={handleMarkContacted}
+          style={{
+            padding: "8px 16px",
+            backgroundColor: isContacted ? "#4caf50" : "#e0e0e0",
+            color: isContacted ? "white" : "#333",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+            transition: "all 0.2s ease",
+          }}
+        >
+          {isContacted ? "✓ Contacted" : "Mark as Contacted"}
+        </button>
+      </div>
+
       <div
         style={{
           display: "grid",
@@ -69,6 +94,16 @@ export const StrategyResults: React.FC<StrategyResultsProps> = ({
           isFullWidth
           onCopy={handleCopyMessage}
           showCopyButton
+        />
+
+        <StrategyCard
+          icon={CARD_COLORS.suggestedNextAction.icon}
+          title={CARD_COLORS.suggestedNextAction.label}
+          content={result.suggestedNextAction || ""}
+          bgColor={CARD_COLORS.suggestedNextAction.bg}
+          borderColor={CARD_COLORS.suggestedNextAction.border}
+          textColor={CARD_COLORS.suggestedNextAction.color}
+          isMobile={isMobile}
         />
 
         <StrategyCard

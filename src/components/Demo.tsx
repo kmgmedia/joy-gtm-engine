@@ -63,6 +63,7 @@ export default function Demo() {
           insight: data.insight,
           painPoints: data.painPoints,
           message: data.message,
+          suggestedNextAction: data.suggestedNextAction,
           recommendedServices: data.recommendedServices,
           timeline: data.timeline,
           nextSteps: data.nextSteps,

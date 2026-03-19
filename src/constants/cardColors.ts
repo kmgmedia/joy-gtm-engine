@@ -20,6 +20,13 @@ export const CARD_COLORS = {
     icon: "✉️",
     label: "Outreach Message",
   },
+  suggestedNextAction: {
+    bg: "#fff8e1",
+    border: "#fbc02d",
+    color: "#fbc02d",
+    icon: "⚡",
+    label: "Next Action",
+  },
   services: {
     bg: "#f3e5f5",
     border: "#9c27b0",

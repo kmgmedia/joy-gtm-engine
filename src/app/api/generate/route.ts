@@ -30,6 +30,7 @@ export async function POST(req: Request) {
           ? parsed.painPoints.join("\n")
           : parsed.painPoints || "",
         message: parsed.message || "",
+        suggestedNextAction: parsed.suggestedNextAction || "",
         nextSteps: parsed.nextSteps || "",
       };
     } catch (e) {
